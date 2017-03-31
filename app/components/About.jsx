@@ -3,7 +3,10 @@ let React = require("react");
 // Stateless functional component
 let About = (props) => {
     return (
-        <h3>About Component</h3>
+        <div>
+            <h3>About</h3>
+            <p>This website uses the OpenWeatherMap API to allow you to get the current temperature in any given city.</p>
+        </div>
     );
 };
 
