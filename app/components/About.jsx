@@ -4,7 +4,7 @@ let React = require("react");
 let About = (props) => {
     return (
         <div>
-            <h1 className="text-center">About</h1>
+            <h1 className="text-center page-title">About</h1>
             <p>This website uses the OpenWeatherMap API to allow you to get the current temperature in any given city.</p>
             <p>Check out OpenWeatherMap's website and this app's code on GitHub:</p>
             <div className="button-group">
