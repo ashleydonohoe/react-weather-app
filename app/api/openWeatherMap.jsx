@@ -14,7 +14,7 @@ module.exports = {
                 return Math.floor(res.data.main.temp);
             }
         }, function () {
-            throw new Error("Unable to fetch weather");
+            throw new Error("City not found");
         });
     }
 };
