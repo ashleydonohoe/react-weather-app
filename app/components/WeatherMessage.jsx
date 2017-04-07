@@ -1,10 +1,22 @@
 let React = require("react");
 
 // Destructured from props
-let WeatherMessage = ({temp, location}) => {
+let WeatherMessage = ({temp, wind, humidity, description, location}) => {
     return (
-        <div>
-            <h3 className="text-center">It is {temp} in {location} right now.</h3>
+        <div className="row">
+            <div className="columns medium-12">
+                <div className="card">
+                    <div className="card-divider">
+                        <h4 className="text-center">Current Weather <br/> {location}</h4>
+                    </div>
+                    <ul className="weather-info">
+                        <li><span className="bold">Temperature:</span> {temp} F</li>
+                        <li><span className="bold">Condition:</span> {description}</li>
+                        <li><span className="bold">Wind Speed:</span> {wind} mph</li>
+                        <li><span className="bold">Humidity:</span> {humidity}%</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     );
 };

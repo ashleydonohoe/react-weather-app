@@ -11,7 +11,13 @@ module.exports = {
             if(res.data.cod && res.data.message) {
                 throw new Error(res.data.message);
             } else {
-                return Math.floor(res.data.main.temp);
+                let weatherData = {
+                    temp: Math.floor(res.data.main.temp),
+                    description: res.data.weather[0].description,
+                    wind: res.data.wind.speed,
+                    humidity: Math.floor(res.data.main.humidity)
+                };
+                return weatherData;
             }
         }, function () {
             throw new Error("City not found");
