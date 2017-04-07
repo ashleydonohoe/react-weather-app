@@ -1,8 +1,7 @@
 let React = require("react");
 
 // Destructured from props
-let WeatherMessage = ({temp, wind, humidity, description, location}) => {
-
+let WeatherMessage = ({temp, wind, humidity, description, location, unit}) => {
     function chooseWeatherIcon(description) {
         let iconName = "";
         let termToSearch = description.toLowerCase();
@@ -34,9 +33,9 @@ let WeatherMessage = ({temp, wind, humidity, description, location}) => {
                         { chooseWeatherIcon(description)}
                     </div>
                     <ul className="weather-info">
-                        <li><span className="bold">Temperature:</span> {temp} F</li>
+                        <li><span className="bold">Temperature:</span> {temp} {unit === "Imperial" ? "F" : "C"}</li>
                         <li><span className="bold">Condition:</span> {description}</li>
-                        <li><span className="bold">Wind Speed:</span> {wind} mph</li>
+                        <li><span className="bold">Wind Speed:</span> {wind} {unit === "Imperial" ? "mph" : "kph"}</li>
                         <li><span className="bold">Humidity:</span> {humidity}%</li>
                     </ul>
                 </div>

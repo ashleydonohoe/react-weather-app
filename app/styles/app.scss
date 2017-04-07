@@ -1,0 +1,43 @@
+$space-large: 2.5rem;
+$title-color: #2199e8;
+
+.page-title {
+    color: $title-color;
+    margin-top: $space-large;
+    margin-bottom: 1.5rem;
+}
+
+input[type="search"] {
+    box-shadow: none;
+}
+
+.card {
+    margin-top: 5%;
+    border: 1px solid $title-color;
+}
+
+.card-divider {
+    background-color: $title-color;
+}
+
+.weather-info {
+    list-style: none;
+    padding-left: 0;
+
+    .bold {
+        font-weight: bold;
+    }
+}
+
+.unit-buttons  {
+    margin-bottom: 2%;
+    .button,
+    .button:visited {
+        margin: 5px;
+        background-color: darkgrey;
+    }
+
+    .unit-selected {
+        background-color: $title-color !important;
+    }
+}

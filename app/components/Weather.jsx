@@ -7,7 +7,8 @@ let ErrorModal = require("ErrorModal");
 let Weather = React.createClass({
     getInitialState: function () {
         return {
-           isLoading: false
+           isLoading: false,
+            unit: "Imperial"
         }
     },
     componentDidMount: function () {
@@ -26,6 +27,24 @@ let Weather = React.createClass({
             window.location.hash = "#/";
         }
     },
+    unitChanged: function(e) {
+        const unitSetting = e.target.id;
+        console.log(e.target.classList);
+
+        let buttons = document.querySelectorAll(".unit-buttons button");
+
+        buttons.forEach((button) => {
+            if(button.classList.contains("unit-selected")) {
+                button.classList.remove("unit-selected");
+            }
+        });
+
+        e.target.classList.add("unit-selected");
+        console.log(unitSetting);
+        this.setState({
+            unit: unitSetting
+        });
+    },
     handleSearch: function (location) {
         let that = this;
 
@@ -37,10 +56,11 @@ let Weather = React.createClass({
             description: undefined,
             humidity: undefined,
             wind: undefined
-
         });
 
-        openWeatherMap.getTemp(location).then(function(weatherData) {
+        let unit = this.state.unit;
+
+        openWeatherMap.getTemp(location, unit).then(function(weatherData) {
             that.setState({
                 location: location,
                 temp: weatherData.temp,
@@ -56,13 +76,13 @@ let Weather = React.createClass({
         });
     },
     render: function () {
-        const {isLoading, temp, wind, description, humidity, location, errorMessage} = this.state;
+        const {isLoading, temp, unit, wind, description, humidity, location, errorMessage} = this.state;
 
         function renderMessage() {
             if(isLoading) {
                 return <h3 className="text-center">Fetching weather info...</h3>;
             } else if (temp && location) {
-                return <WeatherMessage wind={wind} description={description} humidity={humidity} location={location} temp={temp}/>;
+                return <WeatherMessage wind={wind} description={description} humidity={humidity} location={location} temp={temp} unit={unit}/>;
             }
         }
 
@@ -77,6 +97,9 @@ let Weather = React.createClass({
         return (
           <div>
               <h1 className="text-center page-title">Get Weather</h1>
+              <p className="unit-buttons text-center">Unit:<br/>
+                  <button id="Imperial" className="button tiny unit-selected" onClick={this.unitChanged}>F</button>
+                  <button id="Metric" className="button tiny" onClick={this.unitChanged}>C</button></p>
               <WeatherForm onSearch={this.handleSearch}/>
               {renderMessage()}
               {renderError()}
